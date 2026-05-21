@@ -46,24 +46,6 @@ class SOOptimizer:
         self.orth_dim = self.dim // sub_matrix
 
 
-    def state_dict(self) -> dict:
-        return {
-            "m": self.m,
-            "lr": self.lr,
-            "beta1": self.beta1,
-            "strict_stiefel": self.strict_stiefel,
-            "step_count": self.step_count,
-        }
-
-    def load_state_dict(self, state: dict) -> None:
-        self.m = state.get("m", self.m).to(device=self.m.device, dtype=self.m.dtype)
-        self.lr = state.get("lr", self.lr)
-        self.beta1 = state.get("beta1", self.beta1)
-        self.strict_stiefel = state.get("strict_stiefel", self.strict_stiefel)
-        self.step_count = state.get("step_count", self.step_count).to(
-            device=self.step_count.device, dtype=self.step_count.dtype
-        )
-
     def step(self, lr: float | None = None, is_last: bool = False) -> None:
         if self.param.grad is None:
             return
