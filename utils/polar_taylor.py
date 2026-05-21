@@ -54,30 +54,6 @@ def _apply_series(
 
 
 @torch.no_grad()
-def polar_taylor2(a: torch.Tensor) -> torch.Tensor:
-    _validate_shape(a)
-    work = a.to(_screen_dtype(a.dtype))
-    gram_error, _ = _gram_error(work)
-    return _apply_series(work, gram_error, _COEFFS2).to(a.dtype)
-
-
-@torch.no_grad()
-def polar_taylor3(a: torch.Tensor) -> torch.Tensor:
-    _validate_shape(a)
-    work = a.to(_screen_dtype(a.dtype))
-    gram_error, _ = _gram_error(work)
-    return _apply_series(work, gram_error, _COEFFS3).to(a.dtype)
-
-
-@torch.no_grad()
-def polar_taylor4(a: torch.Tensor) -> torch.Tensor:
-    _validate_shape(a)
-    work = a.to(_screen_dtype(a.dtype))
-    gram_error, _ = _gram_error(work)
-    return _apply_series(work, gram_error, _COEFFS4).to(a.dtype)
-
-
-@torch.no_grad()
 def fast_polar(
     a: torch.Tensor,
     tolerance: float = 1e-5,
