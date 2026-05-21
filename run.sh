@@ -10,7 +10,7 @@ OMP_NUM_THREADS=1 torchrun \
     --nproc_per_node 8 \
     --master_port "${MASTER_PORT}" \
     train.py \
-    --data-dir ./data/C4 \
+    --data-dir ./data/C4-50B/ \
     --num-layers 18 \
     --hidden-size 1536 \
     --num-heads 24 \
